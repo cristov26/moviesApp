@@ -1,0 +1,75 @@
+
+1.No tiene mucho sentido hacer un refactor si no se puede organizar la arquitectura en general, no se tiene la estructura de las demas clases involucradas para asi establecer una responsabilidad unica por clase, estructura y funciones.
+2.Solo se ejecuto un refactor logico para extraer codigo que puede establecerse como una funcion aparte
+3. no se creo la funcion debido a que ProductsByUUIDQuery contiene un semaforo para ejecucion en hilos que no se si funciona bajo herencia, o tiene establecido una structura o clase, mas que eso crear un metodo para extraccion de CORE DATA, SQLite, Realm, Etc. no tiene ciencia.
+
+a. El código: Dicho anterior mente no tiene mayor sentido
+b. La organización: No se puede organizar mas que unos cuantos bloques y lineas
+c. Flujo de datos: Hay un unico flujo y esta definido ya claramente
+d. Arquitectura usada: No hay arquitectura si se puede definir una arquitectura con esa unica clase
+e. Pruebas unitarias y/o de UI: ... UI no tiene, Unit test sin un modelo, sin un flujo de datos claro, solo se podria hacer al metodo de updateProducts para verificar el seteo y luego con el ProductsByUUIDQuery verificar que esten.
+
+import Foundation
+import Async
+class CartSync {
+var savings: Float = 0.0
+var products: [MProduct] = []
+var exclusivePrice: Float = 0.0
+var serviceFee: Float?
+var productsNotInDBids: Set<String>?
+func updateWithCart(cart: APIResponse, callback: ((status: ServiceStatus) -> Void) ) {
+self.savings = cart.saving
+self.exclusivePrice = cart.exclusivePrice
+self.serviceFee = cart.serviceFee
+
+ProductsByUUIDQuery(productIds: ids).mutexExecute { (response:
+pthread_mutex_t
+ProductsByIdQueryResponse?) in
+
+if var dbProducts = response {
+self.updateProducts(dbProducts: dbProducts)
+self.products = dbProducts
+Async.main {
+callback(status: .Ok)
+}
+} else {
+Async.main {
+callback(status: .FailValidation)
+log.error("Cant get products from DB with UUID")
+}
+}
+}
+}
+//    No se tiene un estructuracion de responsabilidad unica en la funcion
+func updateProducts(dbProducts: ProductsByIdQueryResponse) {
+let ids = cart.getProductIds()
+let dbIds = Set(dbProducts.map({ $0.uuid }))
+self.productsNotInDBids = Set(ids).subtract(dbIds)
+for product in dbProducts {
+product.appOrigin = .Sync
+for updateProduct in cart.products {
+if updateProduct.upc == product.uuid {
+if product.numOfProducts > 0 {
+let newProduct = product.deepCopy("CopyProduct").then {
+$0.updateProductSync(updateProduct)
+$0.totalGroup = updateProduct.price / 100
+product.numOfProducts += 1
+$0.quantity = updateProduct.quantity
+}
+dbProducts.append(newProduct)
+} else {
+product.updateProductSync(updateProduct)
+product.totalGroup = updateProduct.price / 100
+product.numOfProducts += 1
+product.quantity = updateProduct.quantity
+}
+}
+}
+}
+}
+
+func getProductIds() -> [String] {
+return products.flatMap { $0.identification }
+}
+}
+
