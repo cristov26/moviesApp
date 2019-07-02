@@ -1,5 +1,5 @@
 # SWIFT
-The app has the libraries compiled in SWIFT 3.2 to compile it and make it work fine please use XCode 9.0.0 or use another version but befor run carthage update.
+The app has the libraries compiled in SWIFT 5 to compile it and make it work fine please use XCode 11.0.0.
 
 # moviesApp
 Movies  iOS app is using [Clean Architecture](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html) and [MVP](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter).
@@ -58,6 +58,7 @@ So these are the steps to create a Cartfile:
         github "Alamofire/Alamofire" ~> 4.3
         github "Alamofire/AlamofireImage" ~> 3.1
         github "realm/realm-cocoa"
+        github "airbnb/lottie-ios" "master"
 
 There are two key pieces of information on each line of a Cartfile:
     - Dependency origin: this tells Carthage where to fetch a dependency from. Carthage supports 2 types of origins: github (you specify a Github project in the Username/ProjectName format) and git (The git keyword is followed by the path to the git repository, whether that's a remote URL using git://, http://, or ssh://, or a local path to a git repository).
@@ -74,9 +75,6 @@ This instructs Carthage to clone the Git repositories that are specified in the 
 The "--platform iOS" option ensures that frameworks are only built for iOS. If you don't specify a platform, then by default Carthage will build frameworks for all platforms (often both Mac and iOS) supported by the library.
 
 By default, Carthage will perform its checkouts and builds in a new directory named Carthage in the same location as your Cartfile.
-
-# RXSwift
-The current project dont implement at all RxSwift for time purposes, also RxSwift should be implemented for a large scale projects that should be scalating the code, this project is only for test so is a waste implement it.
 
 ## - Single Responsability Principle
 Is one of the fundamentals to create a clean code and is necesary to manage a good one. 
