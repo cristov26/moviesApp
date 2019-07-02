@@ -15,7 +15,7 @@ class MovieTabBarController: UITabBarController {
         super.awakeFromNib()
         
         tabBar.barStyle = .black
-        tabBar.unselectedItemTintColor = UIColor.white
+        tabBar.unselectedItemTintColor = .white
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let popularViewController = storyboard.instantiateViewController(withIdentifier: "navController") as! UINavigationController
         let topRatedViewController = storyboard.instantiateViewController(withIdentifier: "navController") as! UINavigationController
@@ -44,5 +44,13 @@ class MovieTabBarController: UITabBarController {
         (topRatedViewController.viewControllers[0] as! MoviesViewController).presentCategory(MovieStoreCategory.TopRated)
         (upcomingViewController.viewControllers[0] as! MoviesViewController).presentCategory(MovieStoreCategory.Upcoming)
         viewControllers = [popularViewController, topRatedViewController, upcomingViewController]
+        
+        UITabBar.appearance().shadowImage = UIImage()
+        UITabBar.appearance().backgroundImage = UIImage()
+        
+        //Then, add the custom top line view with custom color. And set the default background color of tabbar
+        let lineView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 0.2))
+        lineView.backgroundColor = UIColor(red: 128/255   , green: 127/255, blue: 137/255, alpha: 1)
+        tabBar.addSubview(lineView)
     }
 }

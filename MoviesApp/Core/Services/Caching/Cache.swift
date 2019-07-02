@@ -44,7 +44,7 @@ struct CacheImpl: Cache {
         }
         
         var realmObjects: [Any]?
-        if predicateFormat.characters.count > 0 {
+        if predicateFormat.count > 0 {
             realmObjects = Array(realm.objects(RealmMovie.self).filter(predicateFormat, args).sorted(byKeyPath: keyPath, ascending: false))
         }
         else {
@@ -79,9 +79,7 @@ struct CacheImpl: Cache {
                 realmObj.r_popularity = "\(modelObj.popularity ?? 0.0)"
                 realmObj.r_timestamp = NSDate()
 
-                realm.add(realmObj, update: true)
-                
-            
+                realm.add(realmObj, update: .all)
         }
     }
     

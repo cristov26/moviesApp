@@ -37,10 +37,10 @@ extension UIViewController {
     func presentAlert (title: String, message: String, type: AlertType) {
         let alert = UIAlertController(title: Constants.Title.Oops,
                                       message: message,
-                                      preferredStyle: UIAlertControllerStyle.alert)
+                                      preferredStyle: UIAlertController.Style.alert)
         
         alert.addAction(UIAlertAction(title: Constants.Button.Ok,
-                                      style: UIAlertActionStyle.default, handler: nil))
+                                      style: UIAlertAction.Style.default, handler: nil))
         
         self.present(alert, animated: true, completion: nil)
     }
@@ -48,7 +48,7 @@ extension UIViewController {
     func presentEmptyAlert (message: String) {
         let alert = UIAlertController(title: nil,
                                       message: message,
-                                      preferredStyle: UIAlertControllerStyle.alert)
+                                      preferredStyle: UIAlertController.Style.alert)
         
         self.present(alert, animated: true, completion: nil)
     }

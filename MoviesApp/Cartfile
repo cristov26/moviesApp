@@ -1,3 +1,4 @@
-github "Alamofire/Alamofire" ~> 4.3
-github "Alamofire/AlamofireImage" ~> 3.1
+github "Alamofire/Alamofire"
+github "Alamofire/AlamofireImage"
 github "realm/realm-cocoa"
+github "airbnb/lottie-ios" "master"

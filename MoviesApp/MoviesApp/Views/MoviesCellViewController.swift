@@ -41,7 +41,7 @@ class MoviesCellViewController: UITableViewCell {
         
         self.MoviesImage.af_setImage(
             withURL: URL(string: url)!,
-            placeholderImage: UIImage(named: "thumb"),
+            placeholderImage: UIImage(named: "icon - Movie"),
             filter: filter
         )
         

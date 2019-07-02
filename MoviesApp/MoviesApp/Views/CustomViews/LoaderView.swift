@@ -35,7 +35,7 @@ class LoaderView: UIView {
             loaderView!.addSubview(loader)
         } else {
             
-            loader.superview?.bringSubview(toFront: loader)
+            loader.superview?.bringSubviewToFront(loader)
         }
     }
     
