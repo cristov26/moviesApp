@@ -8,7 +8,7 @@ Movies  iOS app is using [Clean Architecture](https://8thlight.com/blog/uncle-bo
 Movies App to list and show movies using the API Movies DB that allows you see the greatest movies sorted by differents ways: Popular, Rated and Upcoming, giving the user an idea which movies can see, it calification and a description of it with some trailers.
 
 ## Third party Libraries:
-- Alamofire - Alamofire Image: As the most robust and usefult networking librarie, this is one of the most commong tool for Apple Developers, this allows us to ensure connectivity with almost all types of responses, call configurations, security practices and more.
+- Alamofire - Alamofire Image: As the most robust and usefult networking library, this is one of the most common tool for Apple Developers, this allows us to ensure connectivity with almost all types of responses, call configurations, security practices and more.
 - Realm: Realm is a cross-platform mobile database created to compete with SQLite and CoreData. Working with Realm is much easier than with CoreData. The fact is that in order to use CoreData, you need a deep understanding of the API. In the case of Realm, everything is rather simpler. Realm uses its own engine, simple and fast. Thanks to its zero-copy design, Realm is much faster than ORM, and often faster than SQLite either.
 - Lottie: Lottie is a JSON-based animation file format that enables designers to ship animations on any platform as easily as shipping static assets. This help us to simplify complex animation process and create very cool UX and enriched app.
 
