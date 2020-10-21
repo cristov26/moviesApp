@@ -38,6 +38,8 @@ The objects on this layer are the UIViewControllers and the UIViews used to pres
 ## Carthage
 This is the dependency manager to work with Swift. It exclusively uses dynamic frameworks instead of static libraries, this is only way to distribute Swift binaries that are that are supported by iOS 8+.
 
+FOR XCODE 12, THIS WORK AROUND IS NEEDED: https://github.com/Carthage/Carthage/blob/master/Documentation/Xcode12Workaround.md
+
 ### Carthage - Installation
 At the "core" of Carthage" is a command line tool that assists with fetching and building dependencies.
 There are 2 ways to install it: downloading and running a .pkg installer for the latest release, or using the Homebrew package manager.
