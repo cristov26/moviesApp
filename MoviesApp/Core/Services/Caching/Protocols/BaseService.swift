@@ -27,37 +27,19 @@ class BaseService {
     let successCode = 200
     
     func callEndpoint (endPoint: String, completion:@escaping (ServiceResponse) -> Void) {
-        Alamofire.request(endPoint).responseString { (response) in
+        AF.request(endPoint).responseJSON { (response) in
             
-            var json: [String:AnyObject]?
-            if let data = response.result.value?.data(using: String.Encoding.utf8) {
-                do {
-                    json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String:AnyObject]
-                } catch {
-                    self.failure(completion: completion)
-                }
-            }
-            
-            guard let urlResponse = response.response else {
-                if let error = response.result.error as NSError?, error.code == NSURLErrorNotConnectedToInternet {
+            switch response.result {
+            case let .success(jsonValue):
+                self.success(result: self.parse(response: jsonValue as AnyObject)!, completion: completion)
+            case .failure(_):
+                if response.response?.statusCode == NSURLErrorNotConnectedToInternet {
                     self.notConnectedToInternet(completion: completion)
                 } else {
                     self.failure(completion: completion)
                 }
-                return
             }
-            guard let jsonResponse = json else {
-                 self.failure(completion: completion)
-                return
-            }
-            switch urlResponse.statusCode {
-            case self.successCode:
-                self.success(result: self.parse(response: jsonResponse as AnyObject)!, completion: completion)
-            case NSURLErrorNotConnectedToInternet:
-                self.notConnectedToInternet(completion: completion)
-            default:
-                self.failure(completion: completion)
-            }
+           
         }
     }
     

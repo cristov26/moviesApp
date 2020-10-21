@@ -1,4 +1,4 @@
-github "Alamofire/Alamofire" "4.8.2"
-github "Alamofire/AlamofireImage" "3.5.2"
-github "airbnb/lottie-ios" "45aaf5c1d8938fc456cbcacb6c449b1b23246292"
-github "realm/realm-cocoa" "v3.17.0"
+github "Alamofire/Alamofire" "5.3.0"
+github "Alamofire/AlamofireImage" "4.1.0"
+github "airbnb/lottie-ios" "26d33d92bb0311a266f2fed6fe3453c718fafabb"
+github "realm/realm-cocoa" "v10.0.0"

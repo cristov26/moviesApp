@@ -74,7 +74,7 @@ extension MovieDetailViewController{
             )
             let url = urlImage + self.presenter.movie.backdropPath!
             
-            cell.MoviesImage.af_setImage(
+            cell.MoviesImage.af.setImage(
                 withURL: URL(string: url)!,
                 filter: filter
             )
@@ -94,7 +94,7 @@ extension MovieDetailViewController{
             )
             let url = urlImage + self.presenter.movie.posterPath!
             
-            cell.MoviesImage.af_setImage(
+            cell.MoviesImage.af.setImage(
                 withURL: URL(string: url)!,
                 filter: filter
             )

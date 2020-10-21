@@ -39,7 +39,7 @@ class MoviesCellViewController: UITableViewCell {
         )
         let url = urlImage + movie.posterPath!
         
-        self.MoviesImage.af_setImage(
+        self.MoviesImage.af.setImage(
             withURL: URL(string: url)!,
             placeholderImage: UIImage(named: "icon - Movie"),
             filter: filter
