@@ -7,6 +7,11 @@ Movies  iOS app is using [Clean Architecture](https://8thlight.com/blog/uncle-bo
 ## Description
 Movies App to list and show movies using the API Movies DB that allows you see the greatest movies sorted by differents ways: Popular, Rated and Upcoming, giving the user an idea which movies can see, it calification and a description of it with some trailers.
 
+## Third party Libraries:
+- Alamofire - Alamofire Image: As the most robust and usefult networking librarie, this is one of the most commong tool for Apple Developers, this allows us to ensure connectivity with almost all types of responses, call configurations, security practices and more.
+- Realm: Realm is a cross-platform mobile database created to compete with SQLite and CoreData. Working with Realm is much easier than with CoreData. The fact is that in order to use CoreData, you need a deep understanding of the API. In the case of Realm, everything is rather simpler. Realm uses its own engine, simple and fast. Thanks to its zero-copy design, Realm is much faster than ORM, and often faster than SQLite either.
+- Lottie: Lottie is a JSON-based animation file format that enables designers to ship animations on any platform as easily as shipping static assets. This help us to simplify complex animation process and create very cool UX and enriched app.
+
 ## Architecture
 The code is divided in 3 layers, Core, ViewModel and View. The Core is structured following the main premises of [Clean Architecture](https://github.com/mp911de/CleanArchitecture "Clean Architecture"). The app follows the [dependency inversion principle](https://en.wikipedia.org/wiki/Dependency_inversion_principle) using the protocol oriented approach that Swift has on its foundations. The app has unit test for each layer.
 
@@ -22,10 +27,10 @@ Services represents external agents like the web service used for getting the da
 #### - Use Cases
 The code in this layer contains application specific business rules. Each use case is represented by a protocol, the internal implementation is separated from the interface. Having a protocol per Use Case enforces the [Single Responsibility Principle](https://en.wikipedia.org/wiki/Single_responsibility_principle), facilitates unit testing and improves traceability. The use cases are accessed via the UseCaseLocator class which is a [Service Locator](https://en.wikipedia.org/wiki/Service_locator_pattern) providing a centralized place to resolve and inject the use cases dependencies. The objects on this group relies on the entities and the services via protocols (to preserve dependency inversion principle) and returns the data using [DTOs](https://en.wikipedia.org/wiki/Data_transfer_object) to avoid exposing the entity layer and to model the data in a convenient way to be consumed by the App.
 
-## Presenter
+### Presenter
 The objects in this layer have the responsibilities described in the [MVP](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter) architectural pattern. The Presenters relies on the UseCases to get the data and model in a convenient way to be shown in the UI.
 
-## View
+### View
 
 The objects on this layer are the UIViewControllers and the UIViews used to present the data to the user. The view controller binds the data from the ViewModels to the UI objects, for tracking changes simple closure are used. This project doesn't include any binding framework to keep this as simple as posible and avoid coupling the layers with any reactive code.
 
